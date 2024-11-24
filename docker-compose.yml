@@ -1,0 +1,34 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-container
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: tasksdb
+      MYSQL_USER: ${SQL_USER_NAME}
+      MYSQL_PASSWORD: ${SQL_USER_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+  db:
+    image: mariadb:latest
+    container_name: mariadb-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: tasksdb
+      MYSQL_USER: ${SQL_USER_NAME}
+      MYSQL_PASSWORD: ${SQL_USER_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:

@@ -1,4 +1,4 @@
-# PHP, MARIA DB, Bootstrap, JQuery, AJAX Task Manager demo
+# PHP7, MARIA DB, Bootstrap, JQuery, AJAX Task Manager demo
 
 # About the project
 This is a simple task manager demo using PHP, MariaDB, Bootstrap, JQuery & AJAX (using Docker), that demonstrates basic login, session management, CRUD operations and AJAX calls using PHP 7.
